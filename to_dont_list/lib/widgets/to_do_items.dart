@@ -25,7 +25,7 @@ class ToDoListItem extends StatelessWidget {
     // taking place and therefore which theme to use.
 
     return completed //
-        ? Colors.black
+        ? const Color(0x8a000000)
         : Theme.of(context).primaryColor;
   }
 
@@ -33,7 +33,7 @@ class ToDoListItem extends StatelessWidget {
     if (!completed) return null;
 
     return const TextStyle(
-      color: Colors.black54,
+      color: Color(0x88000000),
       decoration: TextDecoration.lineThrough,
     );
   }
@@ -51,10 +51,10 @@ class ToDoListItem extends StatelessWidget {
           : null,
       leading: CircleAvatar(
         backgroundColor: _getColor(context),
-        child: Text(item.name),
+        child: Text(item.abbrev()),
       ),
       title: Text(
-        item.abbrev(),
+        item.name,
         style: _getTextStyle(context),
       ),
     );
