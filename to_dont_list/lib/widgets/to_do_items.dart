@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:to_dont_list/objects/item.dart';
 
@@ -49,14 +51,22 @@ class ToDoListItem extends StatelessWidget {
               onDeleteItem(item);
             }
           : null,
-      leading: CircleAvatar(
-        backgroundColor: _getColor(context),
-        child: Text(item.abbrev()),
+      leading: ClipRRect(
+        child: Container(
+          height: 70.0,
+          width: 40.0,
+          color: _getColor(context),
+          child: Text(item.abbrev(), textAlign: TextAlign.center, textScaler: const TextScaler.linear(3.0) ,),
+        )
       ),
       title: Text(
         item.name,
         style: _getTextStyle(context),
       ),
+      subtitle: Text(
+        item.name2,
+        style: _getTextStyle(context),
+      )
     );
   }
 }

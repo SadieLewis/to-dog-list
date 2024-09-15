@@ -14,8 +14,8 @@ import 'package:to_dont_list/widgets/to_do_items.dart';
 
 void main() {
   test('Item abbreviation should be first letter', () {
-    const item = Item(name: "add more todos");
-    expect(item.abbrev(), "a");
+    const item = Item(name: "Book", name2: "Author");
+    expect(item.abbrev(), "B");
   });
 
   // Yes, you really need the MaterialApp and Scaffold
@@ -23,7 +23,7 @@ void main() {
     await tester.pumpWidget(MaterialApp(
         home: Scaffold(
             body: ToDoListItem(
-                item: const Item(name: "test"),
+                item: const Item(name: "test", name2: "test2"),
                 completed: true,
                 onListChanged: (Item item, bool completed) {},
                 onDeleteItem: (Item item) {}))));
@@ -39,7 +39,7 @@ void main() {
     await tester.pumpWidget(MaterialApp(
         home: Scaffold(
             body: ToDoListItem(
-                item: const Item(name: "test"),
+                item: const Item(name: "test", name2: "test2"),
                 completed: true,
                 onListChanged: (Item item, bool completed) {},
                 onDeleteItem: (Item item) {}))));
