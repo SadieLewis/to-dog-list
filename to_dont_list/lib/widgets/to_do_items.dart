@@ -62,9 +62,11 @@ class ToDoListItem extends StatelessWidget {
         book.title,
         style: _getTextStyle(context),
       ),
-      subtitle: Text(
-        book.author,
-        style: _getTextStyle(context),
+      subtitle: Column(
+        children: [
+        Text(book.author, style: _getTextStyle(context)),
+        Text("${book.curPage}/${book.pages}", style: _getTextStyle(context))
+        ]
       )
     );
   }
