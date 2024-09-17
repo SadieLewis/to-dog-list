@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:to_dont_list/main.dart';
-import 'package:to_dont_list/objects/item.dart';
+import 'package:to_dont_list/objects/Book.dart';
 import 'package:to_dont_list/widgets/to_do_items.dart';
 
 void main() {

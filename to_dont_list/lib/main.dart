@@ -1,6 +1,6 @@
 // Started with https://docs.flutter.dev/development/ui/widgets-intro
 import 'package:flutter/material.dart';
-import 'package:to_dont_list/objects/item.dart';
+import 'package:to_dont_list/objects/Book.dart';
 import 'package:to_dont_list/widgets/to_do_items.dart';
 import 'package:to_dont_list/widgets/to_do_dialog.dart';
 
@@ -12,44 +12,46 @@ class ToDoList extends StatefulWidget {
 }
 
 class _ToDoListState extends State<ToDoList> {
-  final List<Item> items = [const Item(name: "Book", name2: "Author")];
-  final _itemSet = <Item>{};
+  final List<Book> books = [const Book(title: "Book", author: "Author", pages: "100", curPage: "1")];
+  final _bookset = <Book>{};
 
-  void _handleListChanged(Item item, bool completed) {
+  void _handleListChanged(Book book, bool completed) {
     setState(() {
       // When a user changes what's in the list, you need
-      // to change _itemSet inside a setState call to
+      // to change _bookset inside a setState call to
       // trigger a rebuild.
       // The framework then calls build, below,
       // which updates the visual appearance of the app.
 
-      items.remove(item);
+      books.remove(book);
       if (!completed) {
         print("Completing");
-        _itemSet.add(item);
-        items.add(item);
+        _bookset.add(book);
+        books.add(book);
       } else {
         print("Making Undone");
-        _itemSet.remove(item);
-        items.insert(0, item);
+        _bookset.remove(book);
+        books.insert(0, book);
       }
     });
   }
 
-  void _handleDeleteItem(Item item) {
+  void _handleDeleteItem(Book item) {
     setState(() {
       print("Deleting item");
-      items.remove(item);
+      books.remove(item);
     });
   }
 
-  void _handleNewItem(String itemText, String itemText2, TextEditingController textController, TextEditingController textController2) {
+  void _handleNewItem(String itemText, String itemText2, String itemText3, String itemText4, TextEditingController textController, TextEditingController textController2, TextEditingController textController3, TextEditingController textController4) {
     setState(() {
       print("Adding new item");
-      Item item = Item(name: itemText, name2: itemText2);
-      items.insert(0, item);
+      Book book = Book(title: itemText, author: itemText2, curPage: itemText3, pages: itemText4);
+      books.insert(0, book);
       textController.clear();
       textController2.clear();
+      textController3.clear();
+      textController4.clear();
     });
   }
 
@@ -61,10 +63,10 @@ class _ToDoListState extends State<ToDoList> {
         ),
         body: ListView(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          children: items.map((item) {
+          children: books.map((book) {
             return ToDoListItem(
-              item: item,
-              completed: _itemSet.contains(item),
+              book: book,
+              completed: _bookset.contains(book),
               onListChanged: _handleListChanged,
               onDeleteItem: _handleDeleteItem,
             );

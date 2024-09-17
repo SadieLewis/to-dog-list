@@ -1,20 +1,19 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:to_dont_list/objects/item.dart';
+import 'package:to_dont_list/objects/Book.dart';
 
-typedef ToDoListChangedCallback = Function(Item item, bool completed);
-typedef ToDoListRemovedCallback = Function(Item item);
+typedef ToDoListChangedCallback = Function(Book book, bool completed);
+typedef ToDoListRemovedCallback = Function(Book book);
 
 class ToDoListItem extends StatelessWidget {
   ToDoListItem(
-      {required this.item,
+      {required this.book,
       required this.completed,
       required this.onListChanged,
       required this.onDeleteItem})
-      : super(key: ObjectKey(item));
+      : super(key: ObjectKey(book));
 
-  final Item item;
+  final Book book;
   final bool completed;
 
   final ToDoListChangedCallback onListChanged;
@@ -44,11 +43,11 @@ class ToDoListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        onListChanged(item, completed);
+        onListChanged(book, completed);
       },
       onLongPress: completed
           ? () {
-              onDeleteItem(item);
+              onDeleteItem(book);
             }
           : null,
       leading: ClipRRect(
@@ -56,15 +55,15 @@ class ToDoListItem extends StatelessWidget {
           height: 70.0,
           width: 40.0,
           color: _getColor(context),
-          child: Text(item.abbrev(), textAlign: TextAlign.center, textScaler: const TextScaler.linear(3.0) ,),
+          child: Text(book.abbrev(), textAlign: TextAlign.center, textScaler: const TextScaler.linear(3.0) ,),
         )
       ),
       title: Text(
-        item.name,
+        book.title,
         style: _getTextStyle(context),
       ),
       subtitle: Text(
-        item.name2,
+        book.author,
         style: _getTextStyle(context),
       )
     );
