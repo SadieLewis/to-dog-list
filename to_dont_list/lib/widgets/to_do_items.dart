@@ -6,7 +6,7 @@ typedef ToDoListChangedCallback = Function(Book book, bool completed);
 typedef ToDoListRemovedCallback = Function(Book book);
 
 class ToDoListItem extends StatelessWidget {
-  ToDoListItem(
+  ToDoListItem( 
       {required this.book,
       required this.completed,
       required this.onListChanged,

@@ -59,7 +59,7 @@ class _ToDoListState extends State<ToDoList> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('To Do List'),
+          title: const Text('Bookshelf'),
         ),
         body: ListView(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
