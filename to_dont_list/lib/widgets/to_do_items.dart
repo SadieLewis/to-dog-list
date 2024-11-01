@@ -78,6 +78,11 @@ class _DogListItemState extends State<DogListItem> {
           ),
           const SizedBox(width: 10),
           Text(
+            "Coat: ${widget.dog.coat},",
+            style: _getTextStyle(context),
+          ),
+          const SizedBox(width: 10),
+          Text(
             "Size: ${widget.dog.size}",
             style: _getTextStyle(context),
           )

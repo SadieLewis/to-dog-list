@@ -13,7 +13,7 @@ class ToDogList extends StatefulWidget {
 
 class _ToDoListState extends State<ToDogList> {
   final List<Dog> items = [
-    Dog(name: "Fido", collar: CollarColor.red, breed: "Beagle", size: "Small")
+    Dog(name: "Fido", collar: CollarColor.red, breed: "Beagle", size: "Small", coat: "Brown")
   ];
   final _itemSet = <Dog>{};
 
@@ -45,12 +45,12 @@ class _ToDoListState extends State<ToDogList> {
     });
   }
 
-  void _handleNewItem(String itemText, CollarColor collarColor, String breed, String size,
+  void _handleNewItem(String itemText, CollarColor collarColor, String breed, String size, String coat,
       TextEditingController textController) {
     setState(() {
       print("Adding new item");
 
-      Dog item = Dog(name: itemText, collar: collarColor, breed: breed, size: size);
+      Dog item = Dog(name: itemText, collar: collarColor, breed: breed, size: size, coat: coat);
       items.insert(0, item);
       textController.clear();
     });

@@ -7,6 +7,7 @@ typedef ToDoListAddedCallback = Function(
     CollarColor collarColor,
     String breed,
     String size,
+    String coat,
     TextEditingController textController);
 
 class ToDoDialog extends StatefulWidget {
@@ -25,6 +26,7 @@ class _ToDoDialogState extends State<ToDoDialog> {
   // Dialog with text from https://www.appsdeveloperblog.com/alert-dialog-with-a-text-field-in-flutter/
   final TextEditingController _inputController = TextEditingController();
   final TextEditingController _breedController = TextEditingController();
+  final TextEditingController _coatController = TextEditingController();
   final ButtonStyle yesStyle = ElevatedButton.styleFrom(
       textStyle: const TextStyle(fontSize: 20), backgroundColor: Colors.green);
   final ButtonStyle noStyle = ElevatedButton.styleFrom(
@@ -32,6 +34,7 @@ class _ToDoDialogState extends State<ToDoDialog> {
 
   String valueText = "";
   String breedText = "";
+  String coatText = "";
   CollarColor collarColor = CollarColor.collar;
 
   String sizeText = "Small";
@@ -62,6 +65,16 @@ class _ToDoDialogState extends State<ToDoDialog> {
             controller: _breedController,
             decoration: const InputDecoration(hintText: "Dog breed:"),
           ),
+          TextField(
+            onChanged: (coat) {
+              setState(() {
+                coatText = coat;
+              });
+            },
+            controller: _coatController,
+            decoration: const InputDecoration(hintText: "Dog coat:"),
+          ),
+          const Align( alignment: Alignment.centerLeft ,child: Text("Dog Size:")),
           DropdownButton<String>(
                 value: sizeText,
                 hint: const Text("Select size:"),
@@ -88,6 +101,7 @@ class _ToDoDialogState extends State<ToDoDialog> {
             decoration: const InputDecoration(hintText: "Dog size:"),
           ),
           */
+          const Align( alignment: Alignment.centerLeft ,child: Text("Collar Color:")),
           DropdownButton<CollarColor>(
               value: collarColor,
               onChanged: (CollarColor? newValue) {
@@ -120,10 +134,10 @@ class _ToDoDialogState extends State<ToDoDialog> {
             return ElevatedButton(
               key: const Key("OKButton"),
               style: yesStyle,
-              onPressed: value.text.isNotEmpty && breedText.isNotEmpty && sizeText.isNotEmpty
+              onPressed: value.text.isNotEmpty && breedText.isNotEmpty && sizeText.isNotEmpty && coatText.isNotEmpty
                   ? () {
                       setState(() {
-                        widget.onListAdded(value.text, collarColor, breedText, sizeText,
+                        widget.onListAdded(value.text, collarColor, breedText, sizeText, coatText,
                             _inputController);
                         Navigator.pop(context);
                       });
