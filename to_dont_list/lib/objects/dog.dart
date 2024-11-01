@@ -15,11 +15,12 @@ enum CollarColor {
 }
 
 class Dog {
-  Dog({required this.name, required this.collar, required this.breed});
+  Dog({required this.name, required this.collar, required this.breed, required this.size});
 
   final String name;
   final String breed;
   final CollarColor collar;
+  final String size;
   int count = 1;
   //not needed?
   void encounter() {

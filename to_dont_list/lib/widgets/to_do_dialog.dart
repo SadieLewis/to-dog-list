@@ -6,6 +6,7 @@ typedef ToDoListAddedCallback = Function(
     String value,
     CollarColor collarColor,
     String breed,
+    String size,
     TextEditingController textController);
 
 class ToDoDialog extends StatefulWidget {
@@ -33,6 +34,9 @@ class _ToDoDialogState extends State<ToDoDialog> {
   String breedText = "";
   CollarColor collarColor = CollarColor.collar;
 
+  String sizeText = "Small";
+  List<String> sizes = ["Small", "Medium", "Large"];
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -58,6 +62,32 @@ class _ToDoDialogState extends State<ToDoDialog> {
             controller: _breedController,
             decoration: const InputDecoration(hintText: "Dog breed:"),
           ),
+          DropdownButton<String>(
+                value: sizeText,
+                hint: const Text("Select size:"),
+                onChanged: (newValue) {
+                    setState(() {
+                      sizeText = newValue!;
+                    });
+                },
+                items: sizes.map((String size) {
+                    return DropdownMenuItem<String>(
+                        value: size, 
+                        child: Text(size)
+                    );
+                }).toList()
+            ),
+          
+          /* TextField(
+            onChanged: (size) {
+              setState(() {
+                sizeText = size;
+              });
+            },
+            controller: _sizeController,
+            decoration: const InputDecoration(hintText: "Dog size:"),
+          ),
+          */
           DropdownButton<CollarColor>(
               value: collarColor,
               onChanged: (CollarColor? newValue) {
@@ -90,10 +120,10 @@ class _ToDoDialogState extends State<ToDoDialog> {
             return ElevatedButton(
               key: const Key("OKButton"),
               style: yesStyle,
-              onPressed: value.text.isNotEmpty && breedText.isNotEmpty
+              onPressed: value.text.isNotEmpty && breedText.isNotEmpty && sizeText.isNotEmpty
                   ? () {
                       setState(() {
-                        widget.onListAdded(value.text, collarColor, breedText,
+                        widget.onListAdded(value.text, collarColor, breedText, sizeText,
                             _inputController);
                         Navigator.pop(context);
                       });

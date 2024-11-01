@@ -41,6 +41,8 @@ class _DogListItemState extends State<DogListItem> {
     );
   }
 
+
+  
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -71,7 +73,12 @@ class _DogListItemState extends State<DogListItem> {
           ),
           const SizedBox(width: 10),
           Text(
-            "Breed: ${widget.dog.breed}",
+            "Breed: ${widget.dog.breed},",
+            style: _getTextStyle(context),
+          ),
+          const SizedBox(width: 10),
+          Text(
+            "Size: ${widget.dog.size}",
             style: _getTextStyle(context),
           )
         ],
