@@ -21,7 +21,7 @@ class Dog {
   final String breed;
   final CollarColor collar;
   final String size;
-  final String coat;
+  final Color coat;
   int count = 1;
   //not needed?
   void encounter() {
