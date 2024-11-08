@@ -32,6 +32,7 @@ class _DogListItemState extends State<DogListItem> {
     return widget.completed ? Colors.black54 : Theme.of(context).primaryColor;
   }
 
+  
   TextStyle? _getTextStyle(BuildContext context) {
     if (!widget.completed) return null;
 
@@ -40,7 +41,9 @@ class _DogListItemState extends State<DogListItem> {
       decoration: TextDecoration.lineThrough,
     );
   }
+  
 
+  
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -71,9 +74,46 @@ class _DogListItemState extends State<DogListItem> {
           ),
           const SizedBox(width: 10),
           Text(
-            "Breed: ${widget.dog.breed}",
+            "Breed: ${widget.dog.breed},",
             style: _getTextStyle(context),
-          )
+          ),
+          const SizedBox(width: 10),
+          Text(
+            "Size: ${widget.dog.size},",
+            style: _getTextStyle(context),
+          ),
+          const SizedBox(width: 10),
+          Text(
+            "COAT",
+            style: TextStyle(
+              color: widget.dog.coat,
+              fontSize: 20, 
+              fontWeight: FontWeight.bold,
+              shadows: const [
+                // Add outline effect using shadows, make it readable
+                Shadow(
+                  offset: Offset(-1, -1),
+                  color: Colors.black,
+                  blurRadius: 1,
+                ),
+                Shadow(
+                  offset: Offset(1, -1),
+                  color: Colors.black,
+                  blurRadius: 1,
+                ),
+                Shadow(
+                  offset: Offset(-1, 1),
+                  color: Colors.black,
+                  blurRadius: 1,
+                ),
+                Shadow(
+                  offset: Offset(1, 1),
+                  color: Colors.black,
+                  blurRadius: 1,
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
