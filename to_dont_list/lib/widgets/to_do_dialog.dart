@@ -32,7 +32,7 @@ class _ToDoDialogState extends State<ToDoDialog> {
   String valueText = "";
   String breedText = "";
   Color coatColor = Colors.brown; // Default coat color
-  CollarColor collarColor = CollarColor.collar;
+  CollarColor collarColor = CollarColor.red;
 
   String sizeText = "Small";
   List<String> sizes = ["Small", "Medium", "Large"];

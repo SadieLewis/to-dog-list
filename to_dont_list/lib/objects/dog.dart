@@ -7,8 +7,7 @@ enum CollarColor {
   green(Color.fromARGB(255, 15, 128, 19)),
   blue(Color.fromARGB(255, 38, 114, 177)),
   purple(Color.fromARGB(255, 200, 92, 219)),
-  pink(Color.fromARGB(255, 240, 104, 149)),
-  collar(Color.fromARGB(255, 255, 255, 255));
+  pink(Color.fromARGB(255, 240, 104, 149));
 
   const CollarColor(this.color);
   final Color color;
