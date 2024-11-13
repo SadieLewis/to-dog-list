@@ -20,7 +20,7 @@ void main() {
         home: Scaffold(
             body: DogListItem(
                 dog: Dog(
-                    name: "test", collar: CollarColor.blue, breed: "testbreed"),
+                    name: "test", collar: CollarColor.blue, breed: "testbreed", size: "small", coat: Colors.black),
                 completed: true,
                 onListChanged: (Dog dog, bool completed) {},
                 onDeleteItem: (Dog dog) {}))));
@@ -36,7 +36,7 @@ void main() {
         home: Scaffold(
             body: DogListItem(
                 dog: Dog(
-                    name: "test", collar: CollarColor.blue, breed: "testbreed"),
+                    name: "test", collar: CollarColor.blue, breed: "testbreed", size: "small", coat: Colors.black),
                 completed: true,
                 onListChanged: (Dog dog, bool completed) {},
                 onDeleteItem: (Dog dog) {}))));
@@ -55,7 +55,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: DogListItem(
-              dog: Dog(name: "test", collar: CollarColor.blue, breed: "test"),
+              dog: Dog(name: "test", collar: CollarColor.blue, breed: "test", size: "small", coat: Colors.black),
               completed: true,
               onListChanged: (Dog dog, bool completed) {},
               onDeleteItem: (Dog dog) {}),
