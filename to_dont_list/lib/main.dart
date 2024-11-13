@@ -20,20 +20,20 @@ class _ToDoListState extends State<ToDogList> {
   void _handleListChanged(Dog item, bool completed) {
     setState(() {
       // When a user changes what's in the list, you need
-      // to change _itemSet inside a setState call to
+      // to change _bookset inside a setState call to
       // trigger a rebuild.
       // The framework then calls build, below,
       // which updates the visual appearance of the app.
 
-      items.remove(item);
+      books.remove(book);
       if (!completed) {
         print("Completing");
-        _itemSet.add(item);
-        items.add(item);
+        _bookset.add(book);
+        books.add(book);
       } else {
         print("Making Undone");
-        _itemSet.remove(item);
-        items.insert(0, item);
+        _bookset.remove(book);
+        books.insert(0, book);
       }
     });
   }
@@ -41,7 +41,7 @@ class _ToDoListState extends State<ToDogList> {
   void _handleDeleteItem(Dog item) {
     setState(() {
       print("Deleting item");
-      items.remove(item);
+      books.remove(item);
     });
   }
 
@@ -53,6 +53,9 @@ class _ToDoListState extends State<ToDogList> {
       Dog item = Dog(name: itemText, collar: collarColor, breed: breed, size: size, coat: coat);
       items.insert(0, item);
       textController.clear();
+      textController2.clear();
+      textController3.clear();
+      textController4.clear();
     });
   }
 

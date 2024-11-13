@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:to_dont_list/objects/dog.dart';
 
@@ -37,7 +38,7 @@ class _DogListItemState extends State<DogListItem> {
     if (!widget.completed) return null;
 
     return const TextStyle(
-      color: Colors.black54,
+      color: Color(0x88000000),
       decoration: TextDecoration.lineThrough,
     );
   }
@@ -116,6 +117,12 @@ class _DogListItemState extends State<DogListItem> {
           ),
         ],
       ),
+      subtitle: Column(
+        children: [
+        Text(book.author, style: _getTextStyle(context)),
+        Text("${book.curPage}/${book.pages}", style: _getTextStyle(context))
+        ]
+      )
     );
   }
 }

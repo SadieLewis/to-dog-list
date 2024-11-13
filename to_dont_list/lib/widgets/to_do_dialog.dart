@@ -26,8 +26,6 @@ class _ToDoDialogState extends State<ToDoDialog> {
   final TextEditingController _breedController = TextEditingController();
   final ButtonStyle yesStyle = ElevatedButton.styleFrom(
       textStyle: const TextStyle(fontSize: 20), backgroundColor: Colors.green);
-  final ButtonStyle noStyle = ElevatedButton.styleFrom(
-      textStyle: const TextStyle(fontSize: 20), backgroundColor: Colors.red);
 
   String valueText = "";
   String breedText = "";
@@ -176,6 +174,40 @@ class _ToDoDialogState extends State<ToDoDialog> {
             ),
           ],
         ),
+      ),
+      TextField(
+        onChanged: (value2) {
+          setState(() {
+            valueText2 = value2;
+          });
+        },
+        controller: _inputController2,
+        decoration: const InputDecoration(hintText: "Author"),
+      ),
+      TextField(
+        onChanged: (value3) {
+          setState(() {
+            valueText3 = value3;
+          });
+        },
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+        keyboardType: TextInputType.number,
+        controller: _inputController3,
+        decoration: const InputDecoration(hintText: "Current Page"),
+      ),
+      TextField(
+        onChanged: (value4) {
+          setState(() {
+            valueText4 = value4;
+          });
+        },
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+        keyboardType: TextInputType.number,
+        controller: _inputController4,
+        decoration: const InputDecoration(hintText: "Max Pages"),
+      ),
+      
+      ]
       ),
       actions: <Widget>[
         ElevatedButton(
