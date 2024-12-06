@@ -59,29 +59,62 @@ class _ToDoListState extends State<ToDogList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('To Dog List: A list of dogs you see'),
+      appBar: AppBar(
+        title: const Text(
+          'To Dog List',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
+          ),
         ),
-        body: ListView(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          children: items.map((dog) {
-            return DogListItem(
-              dog: dog,
-              completed: _itemSet.contains(dog),
-              onListChanged: _handleListChanged,
-              onDeleteItem: _handleDeleteItem,
-            );
-          }).toList(),
+        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 255, 206, 255),
+        elevation: 4,
+      ),
+      body: items.isEmpty
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.pets, size: 80, color: const Color.fromARGB(255, 238, 175, 238).withOpacity(0.7)),
+                  const SizedBox(height: 20),
+                  Text(
+                    'No dogs yet! Add some.',
+                    style: TextStyle(fontSize: 18, color: const Color.fromARGB(255, 246, 193, 224).withOpacity(0.8)),
+                  ),
+                ],
+              ),
+            )
+          : ListView.builder(
+              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                final dog = items[index];
+                return DogListItem(
+                  dog: dog,
+                  completed: _itemSet.contains(dog),
+                  onListChanged: _handleListChanged,
+                  onDeleteItem: _handleDeleteItem,
+                );
+              },
+            ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (_) {
+              return ToDoDialog(onListAdded: _handleNewItem);
+            },
+          );
+        },
+        backgroundColor: const Color.fromARGB(255, 255, 206, 255),
+        label: const Text(
+          'Add Dog',
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        floatingActionButton: FloatingActionButton(
-            child: const Icon(Icons.add),
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (_) {
-                    return ToDoDialog(onListAdded: _handleNewItem);
-                  });
-            }));
+        icon: const Icon(Icons.add),
+      ),
+    );
   }
 }
 

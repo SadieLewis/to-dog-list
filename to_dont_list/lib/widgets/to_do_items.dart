@@ -46,75 +46,77 @@ class _DogListItemState extends State<DogListItem> {
   
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () {
-        widget.onListChanged(widget.dog, widget.completed);
-      },
-      onLongPress: widget.completed
-          ? () {
-              widget.onDeleteItem(widget.dog);
-            }
-          : null,
-      //circle avatar can be replaced by button or icon, if onPressed is used for button call setState() (must be stateful widget)
-      leading: ElevatedButton(
-        onPressed: () {
-          setState(() {
-            widget.dog.encounter();
-          });
+    return Card(
+      elevation: 4,
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      child: ListTile(
+        onTap: () {
+          widget.onListChanged(widget.dog, widget.completed);
         },
-        style:
-            ElevatedButton.styleFrom(backgroundColor: widget.dog.collar.color),
-        child: Text(widget.dog.count.toString()),
-      ),
-      title: Row(
-        children: [
-          Text(
-            "Name: ${widget.dog.name},",
-            style: _getTextStyle(context),
+        onLongPress: widget.completed
+            ? () {
+                widget.onDeleteItem(widget.dog);
+              }
+            : null,
+        leading: ElevatedButton(
+          onPressed: () {
+            setState(() {
+              widget.dog.encounter();
+            });
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: widget.dog.collar.color,
+            shape: const CircleBorder(),
+            padding: const EdgeInsets.all(16),
           ),
-          const SizedBox(width: 10),
-          Text(
-            "Breed: ${widget.dog.breed},",
-            style: _getTextStyle(context),
-          ),
-          const SizedBox(width: 10),
-          Text(
-            "Size: ${widget.dog.size},",
-            style: _getTextStyle(context),
-          ),
-          const SizedBox(width: 10),
-          Text(
-            "COAT",
-            style: TextStyle(
-              color: widget.dog.coat,
-              fontSize: 20, 
+          child: Text(
+            widget.dog.count.toString(),
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
-              shadows: const [
-                // Add outline effect using shadows, make it readable
-                Shadow(
-                  offset: Offset(-1, -1),
-                  color: Colors.black,
-                  blurRadius: 1,
-                ),
-                Shadow(
-                  offset: Offset(1, -1),
-                  color: Colors.black,
-                  blurRadius: 1,
-                ),
-                Shadow(
-                  offset: Offset(-1, 1),
-                  color: Colors.black,
-                  blurRadius: 1,
-                ),
-                Shadow(
-                  offset: Offset(1, 1),
-                  color: Colors.black,
-                  blurRadius: 1,
-                ),
-              ],
+              fontSize: 16,
+              color: Colors.white,
             ),
           ),
-        ],
+        ),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              widget.dog.name,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: _getColor(context),
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              "Breed: ${widget.dog.breed}, Size: ${widget.dog.size}",
+              style: _getTextStyle(context)?.copyWith(fontSize: 14) ??
+                  const TextStyle(fontSize: 14),
+            ),
+          ],
+        ),
+        trailing: Text(
+          "COAT",
+          style: TextStyle(
+            color: widget.dog.coat,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            shadows: const [
+              Shadow(offset: Offset(-1, -1), color: Colors.black, blurRadius: 1),
+              Shadow(offset: Offset(1, -1), color: Colors.black, blurRadius: 1),
+              Shadow(offset: Offset(-1, 1), color: Colors.black, blurRadius: 1),
+              Shadow(offset: Offset(1, 1), color: Colors.black, blurRadius: 1),
+            ],
+          ),
+        ),
+        subtitle: widget.completed
+            ? const Text(
+                "Tap to undo or hold to delete.",
+                style: TextStyle(fontSize: 12, color: Colors.black54),
+              )
+            : null,
       ),
     );
   }
